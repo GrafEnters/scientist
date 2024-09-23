@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &5552447306453508127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793734303348392322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf01555f87d38c479e2f2ff4742e063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thingName: cavestone
+  mainRenderers:
+  - {fileID: 7213946692945321122}
+  sideRenderers: []
+  id: 0
+  durability: 0
+  density: 0
+  mainM:
+    material: {fileID: 0}
+    id: 0
+    Density: 0
+    Durability: 0
+    BurningTime: 0
+  sideM:
+    material: {fileID: 0}
+    id: 0
+    Density: 0
+    Durability: 0
+    BurningTime: 0
+  isDecorative: 0
+  maxAngle: 361
+  cost: 10
+  dropModel:
+  - {fileID: 16749478899829149, guid: 6a5f8a2f1c009a14dbd7f9ae3bff9ccd, type: 3}
+  dropPrefab: []
+  hp: 0
+  idealTemp: 0
+  prolEdge: 25
+  tempRadius: 5
+  spaceRadius: 0.85
+  spaceMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  isRock: 1
+--- !u!1001 &3982572667439411885
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1555484382577098959, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555484382577098959, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555484382577098959, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555484382577098959, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555484382577098959, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555484382577098959, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555484382577098959, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555484382577098959, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555484382577098959, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555484382577098959, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555484382577098959, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280724449463713670, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 5460674424242995309, guid: 6a86c7772d699fa46b51f9049e4d33fb,
+        type: 3}
+    - target: {fileID: 4343468511414743855, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_Name
+      value: Cavestone Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343468511414743855, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064282757031466145, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 5460674424242995309, guid: 6a86c7772d699fa46b51f9049e4d33fb,
+        type: 3}
+    - target: {fileID: 9064282757031466145, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5afaf4f6e460e934bbe150e10c4eefa5, type: 3}
+--- !u!1 &793734303348392322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4343468511414743855, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3982572667439411885}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7213946692945321122 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6006085523443805711, guid: 5afaf4f6e460e934bbe150e10c4eefa5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3982572667439411885}
+  m_PrefabAsset: {fileID: 0}

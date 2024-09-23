@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Game>
+  <player>
+    <playerPos>
+      <x>21.0383549</x>
+      <y>1.0849998</y>
+      <z>19.4715424</z>
+    </playerPos>
+    <playerRot>
+      <x>0</x>
+      <y>-0.0298646875</y>
+      <z>0</z>
+      <w>-0.999554038</w>
+      <eulerAngles>
+        <x>-0</x>
+        <y>3.42275</y>
+        <z>-0</z>
+      </eulerAngles>
+    </playerRot>
+    <camLook>
+      <x>-0.05144425</x>
+      <y>-0.0298251081</y>
+      <z>0.00153705187</z>
+      <w>-0.9982293</w>
+      <eulerAngles>
+        <x>5.900314</x>
+        <y>3.42274952</y>
+        <z>1.34112641E-08</z>
+      </eulerAngles>
+    </camLook>
+    <camLookUtil>5.900314</camLookUtil>
+  </player>
+</Game>
