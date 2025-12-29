@@ -42,7 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -439,7 +440,7 @@ LightingSettings:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
-  serializedVersion: 8
+  serializedVersion: 9
   m_EnableBakedLightmaps: 0
   m_EnableRealtimeLightmaps: 0
   m_RealtimeEnvironmentLighting: 1
@@ -739,9 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0bffbe12a4f0c4180cd14a6b157c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkSize: 16
   islandRadiusInChunks: 15
-  polygonSize: 2
   IsSpawningPlants: 1
   IsSpawningVillage: 1
   IsDeactivatingChunks: 1
@@ -790,11 +789,10 @@ MonoBehaviour:
     dump: 0.5
     sharpness: 1
     persistance: 0.9
-  ChunkPrefab: {fileID: 2439189480110840731, guid: f5ee78aca76e829408bd93be6e0ae503,
+  ChunkPrefab: {fileID: 4943662745706780678, guid: f5ee78aca76e829408bd93be6e0ae503,
     type: 3}
   Player: {fileID: 826797854}
   seed: 
-  viewDistanceInChunks: 2
 --- !u!4 &874282960
 Transform:
   m_ObjectHideFlags: 0
@@ -1127,6 +1125,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1148,6 +1148,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -1182,10 +1183,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917039026}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1881,7 +1882,7 @@ PrefabInstance:
     - target: {fileID: 2094791785299594350, guid: d75a9c82a899f1e4d82c4854894d3a30,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2094791785299594350, guid: d75a9c82a899f1e4d82c4854894d3a30,
         type: 3}
@@ -1901,7 +1902,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2094791785299594351, guid: d75a9c82a899f1e4d82c4854894d3a30,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2043490779}
   m_SourcePrefab: {fileID: 100100000, guid: d75a9c82a899f1e4d82c4854894d3a30, type: 3}
 --- !u!108 &1431884764 stripped
 Light:
@@ -2650,6 +2655,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016888882}
   m_CullTransparentMesh: 0
+--- !u!1 &2043490775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2094791785299594351, guid: d75a9c82a899f1e4d82c4854894d3a30,
+    type: 3}
+  m_PrefabInstance: {fileID: 1407428374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2043490779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043490775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &2047902492
 GameObject:
   m_ObjectHideFlags: 0
@@ -2729,6 +2769,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047902492}
   m_CullTransparentMesh: 0
+--- !u!1 &2126567846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2126567848}
+  - component: {fileID: 2126567847}
+  m_Layer: 0
+  m_Name: ConfigsProvider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2126567847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126567846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d98046abc404101acf9c2e587e03afa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConfigsProvider
+  <MainGameConfig>k__BackingField: {fileID: 11400000, guid: 74688dd7c584a27469cc98366d05e435,
+    type: 2}
+--- !u!4 &2126567848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126567846}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2740,3 +2826,4 @@ SceneRoots:
   - {fileID: 82284656}
   - {fileID: 1407428374}
   - {fileID: 805465859}
+  - {fileID: 2126567848}
