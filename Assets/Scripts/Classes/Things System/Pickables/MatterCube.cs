@@ -1,4 +1,1 @@
-﻿public class MatterCube : Pickable
-{
-
-}
+﻿public class MatterCube : Pickable { }

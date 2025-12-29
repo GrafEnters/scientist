@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-public interface IInteractable 
-{
-	bool Interact(GameObject handObject = null);
+public interface IInteractable {
+    bool Interact(GameObject handObject = null);
 }

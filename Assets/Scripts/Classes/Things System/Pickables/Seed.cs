@@ -1,60 +1,51 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Seed : Pickable
-{
-	public GameObject parentStructure;
+public class Seed : Pickable {
+    public GameObject parentStructure;
 
-	public float growTime = 15;
+    public float growTime = 15;
 
-	float growRemainTime;
+    float growRemainTime;
 
-	protected override void Start()
-	{
-		base.Start();
-		growRemainTime = growTime;
-	}
+    protected override void Start() {
+        base.Start();
+        growRemainTime = growTime;
+    }
 
-	private void OnEnable()
-	{
-		StartCoroutine(Growing());
-		//	Debug.Log("start Growing");
-	}
+    private void OnEnable() {
+        StartCoroutine(Growing());
+        //	Debug.Log("start Growing");
+    }
 
-	IEnumerator Growing()
-	{
-		while (growRemainTime >= 0)
-		{
-			yield return new WaitForSeconds(1);
+    IEnumerator Growing() {
+        while (growRemainTime >= 0) {
+            yield return new WaitForSeconds(1);
 
-			if (GetComponent<Rigidbody>().linearVelocity.sqrMagnitude > 0.01f)
-				growRemainTime = growTime;
+            if (GetComponent<Rigidbody>().linearVelocity.sqrMagnitude > 0.01f)
+                growRemainTime = growTime;
 
-			LayerMask mask = LayerMask.GetMask("Ground");
-			if (Physics.CheckSphere(transform.position, 0.3f, mask))
-				growRemainTime -= 1;
-			else
-				growRemainTime = growTime;
-		}
-		PlantNewStructure();
-	}
+            LayerMask mask = LayerMask.GetMask("Ground");
+            if (Physics.CheckSphere(transform.position, 0.3f, mask))
+                growRemainTime -= 1;
+            else
+                growRemainTime = growTime;
+        }
 
+        PlantNewStructure();
+    }
 
-	void PlantNewStructure()
-	{
-		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out RaycastHit hit, 1f))
-		{
-			GameObject ground = hit.collider.GetComponent<Transform>().gameObject;
+    void PlantNewStructure() {
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out RaycastHit hit, 1f)) {
+            GameObject ground = hit.collider.GetComponent<Transform>().gameObject;
 
-			// Если структура - разрушаем
-			if (ground.GetComponent<Chunk>())
-			{
-				GameObject structure = Instantiate(parentStructure, hit.point, Quaternion.identity);
-				structure.SetActive(true);
-				Destroy(gameObject);
-				return;
-			}
-
-		}
-	}
+            // Если структура - разрушаем
+            if (ground.GetComponent<Chunk>()) {
+                GameObject structure = Instantiate(parentStructure, hit.point, Quaternion.identity);
+                structure.SetActive(true);
+                Destroy(gameObject);
+                return;
+            }
+        }
+    }
 }

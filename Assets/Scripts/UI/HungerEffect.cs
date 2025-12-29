@@ -6,8 +6,6 @@ public class HungerEffect : MonoBehaviour {
 
     public float hunger = 1f;
 
-    private void Start() { }
-
     public void SetHungerStage(float percent) { }
 
     private void Update() {

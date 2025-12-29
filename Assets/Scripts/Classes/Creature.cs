@@ -2,14 +2,10 @@
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Creature : Thing
-{
+public class Creature : Thing {
+    public NavMeshAgent agent;
 
-	public NavMeshAgent agent;
-
-
-	private void Start()
-	{
-		agent.Move(new Vector3(0, 50, 0));
-	}
+    private void Start() {
+        agent.Move(new Vector3(0, 50, 0));
+    }
 }

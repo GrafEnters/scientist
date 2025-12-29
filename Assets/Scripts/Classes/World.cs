@@ -1,6 +1,4 @@
 ﻿using System;
 
 [Serializable]
-public class NewBehaviourScript
-{
-}
+public class NewBehaviourScript { }

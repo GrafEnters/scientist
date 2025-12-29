@@ -1,3 +1,1 @@
-﻿public class ElderHouse : Building
-{
-}
+﻿public class ElderHouse : Building { }

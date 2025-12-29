@@ -1,4 +1,3 @@
-﻿public interface IEdible 
-{
-	Edible GetEdible();
+﻿public interface IEdible {
+    Edible GetEdible();
 }

@@ -1,160 +1,145 @@
 ﻿using UnityEngine;
 using Random = System.Random;
 
-public class SimplexNoiseGenerator
-{
-	private int[] A = new int[3];
-	private float s, u, v, w;
-	private int i, j, k;
-	private float onethird = 0.333333333f;
-	private float onesixth = 0.166666667f;
-	private int[] T;
+public class SimplexNoiseGenerator {
+    private int[] A = new int[3];
+    private float s, u, v, w;
+    private int i, j, k;
+    private float onethird = 0.333333333f;
+    private float onesixth = 0.166666667f;
+    private int[] T;
 
-	public SimplexNoiseGenerator()
-	{
-		if (T == null)
-		{
-			Random rand = new Random();
-			T = new int[8];
-			for (int q = 0; q < 8; q++)
-				T[q] = rand.Next();
-		}
-	}
+    public SimplexNoiseGenerator() {
+        if (T == null) {
+            Random rand = new Random();
+            T = new int[8];
+            for (int q = 0; q < 8; q++)
+                T[q] = rand.Next();
+        }
+    }
 
-	public SimplexNoiseGenerator(string seed)
-	{
-		T = new int[8];
-		string[] seed_parts = seed.Split(new char[] { ' ' });
+    public SimplexNoiseGenerator(string seed) {
+        T = new int[8];
+        string[] seed_parts = seed.Split(new char[] { ' ' });
 
-		for (int q = 0; q < 8; q++)
-		{
-			int b;
-			try
-			{
-				b = int.Parse(seed_parts[q]);
-			}
-			catch
-			{
-				b = 0x0;
-			}
-			T[q] = b;
-		}
-	}
+        for (int q = 0; q < 8; q++) {
+            int b;
+            try {
+                b = int.Parse(seed_parts[q]);
+            } catch {
+                b = 0x0;
+            }
 
-	public SimplexNoiseGenerator(int[] seed)
-	{ // {0x16, 0x38, 0x32, 0x2c, 0x0d, 0x13, 0x07, 0x2a}
-		T = seed;
-	}
+            T[q] = b;
+        }
+    }
 
-	public string GetSeed()
-	{
-		string seed = "";
+    public SimplexNoiseGenerator(int[] seed) {
+        // {0x16, 0x38, 0x32, 0x2c, 0x0d, 0x13, 0x07, 0x2a}
+        T = seed;
+    }
 
-		for (int q = 0; q < 8; q++)
-		{
-			seed += T[q].ToString();
-			if (q < 7)
-				seed += " ";
-		}
+    public string GetSeed() {
+        string seed = "";
 
-		return seed;
-	}
+        for (int q = 0; q < 8; q++) {
+            seed += T[q].ToString();
+            if (q < 7)
+                seed += " ";
+        }
 
-	/// <summary>
-	/// Возвращает значения в промежутке (0,100)
-	/// </summary>
-	public float coherentNoise(Vector3 coord, int octaves = 1, int multiplier = 25, float dump = 0.3f, float sharpness = 2, float persistence = 0.9f, bool isSmoothing = false)
-	{
-		float amplitude = 100;
-		float lacunarity = 2; // во сколько увеличивается частота 
-		Vector3 v3 = new Vector3(coord.x, coord.y, coord.z) / multiplier;
-		float val = 0;
-		for (int n = 0; n < octaves; n++)
-		{
-			val += ((noise(v3.x, v3.y, v3.z) * sharpness) + dump);
-			v3 *= lacunarity;
-			amplitude *= persistence;
-		}
-		if (isSmoothing)
-			return Mathf.SmoothStep(0, 100, val);
-		else
-			return val * 100;
-	}
+        return seed;
+    }
 
-	public int getDensity(Vector3 loc)
-	{
-		float val = coherentNoise(loc);
-		return (int)Mathf.Lerp(0, 255, val);
-	}
+    /// <summary>
+    /// Возвращает значения в промежутке (0,100)
+    /// </summary>
+    public float coherentNoise(Vector3 coord, int octaves = 1, int multiplier = 25, float dump = 0.3f, float sharpness = 2,
+        float persistence = 0.9f, bool isSmoothing = false) {
+        float amplitude = 100;
+        float lacunarity = 2; // во сколько увеличивается частота 
+        Vector3 v3 = new Vector3(coord.x, coord.y, coord.z) / multiplier;
+        float val = 0;
+        for (int n = 0; n < octaves; n++) {
+            val += ((noise(v3.x, v3.y, v3.z) * sharpness) + dump);
+            v3 *= lacunarity;
+            amplitude *= persistence;
+        }
 
-	// Simplex Noise Generator
-	public float noise(float x, float y, float z)
-	{
-		s = (x + y + z) * onethird;
-		i = fastfloor(x + s);
-		j = fastfloor(y + s);
-		k = fastfloor(z + s);
+        if (isSmoothing)
+            return Mathf.SmoothStep(0, 100, val);
+        else
+            return val * 100;
+    }
 
-		s = (i + j + k) * onesixth;
-		u = x - i + s;
-		v = y - j + s;
-		w = z - k + s;
+    public int getDensity(Vector3 loc) {
+        float val = coherentNoise(loc);
+        return (int)Mathf.Lerp(0, 255, val);
+    }
 
-		A[0] = 0; A[1] = 0; A[2] = 0;
+    // Simplex Noise Generator
+    public float noise(float x, float y, float z) {
+        s = (x + y + z) * onethird;
+        i = fastfloor(x + s);
+        j = fastfloor(y + s);
+        k = fastfloor(z + s);
 
-		int hi = u >= w ? u >= v ? 0 : 1 : v >= w ? 1 : 2;
-		int lo = u < w ? u < v ? 0 : 1 : v < w ? 1 : 2;
+        s = (i + j + k) * onesixth;
+        u = x - i + s;
+        v = y - j + s;
+        w = z - k + s;
 
+        A[0] = 0;
+        A[1] = 0;
+        A[2] = 0;
 
-		//return   kay(hi) + kay(3 - hi - lo) + kay(lo) + kay(0); // Range (-1,1)
-		return kay(hi) + kay(3 - hi - lo) + kay(lo) + kay(0); //  Range (0,1)
-	}
+        int hi = u >= w ? u >= v ? 0 : 1 : v >= w ? 1 : 2;
+        int lo = u < w ? u < v ? 0 : 1 : v < w ? 1 : 2;
 
-	// Private methods 
-	private float kay(int a)
-	{
-		s = (A[0] + A[1] + A[2]) * onesixth;
-		float x = u - A[0] + s;
-		float y = v - A[1] + s;
-		float z = w - A[2] + s;
-		float t = 0.6f - x * x - y * y - z * z;
-		int h = shuffle(i + A[0], j + A[1], k + A[2]);
-		A[a]++;
-		if (t < 0) return 0;
-		int b5 = h >> 5 & 1;
-		int b4 = h >> 4 & 1;
-		int b3 = h >> 3 & 1;
-		int b2 = h >> 2 & 1;
-		int b1 = h & 3;
+        //return   kay(hi) + kay(3 - hi - lo) + kay(lo) + kay(0); // Range (-1,1)
+        return kay(hi) + kay(3 - hi - lo) + kay(lo) + kay(0); //  Range (0,1)
+    }
 
-		float p = b1 == 1 ? x : b1 == 2 ? y : z;
-		float q = b1 == 1 ? y : b1 == 2 ? z : x;
-		float r = b1 == 1 ? z : b1 == 2 ? x : y;
+    // Private methods 
+    private float kay(int a) {
+        s = (A[0] + A[1] + A[2]) * onesixth;
+        float x = u - A[0] + s;
+        float y = v - A[1] + s;
+        float z = w - A[2] + s;
+        float t = 0.6f - x * x - y * y - z * z;
+        int h = shuffle(i + A[0], j + A[1], k + A[2]);
+        A[a]++;
+        if (t < 0) return 0;
+        int b5 = h >> 5 & 1;
+        int b4 = h >> 4 & 1;
+        int b3 = h >> 3 & 1;
+        int b2 = h >> 2 & 1;
+        int b1 = h & 3;
 
-		p = b5 == b3 ? -p : p;
-		q = b5 == b4 ? -q : q;
-		r = b5 != (b4 ^ b3) ? -r : r;
-		t *= t;
-		return 8 * t * t * (p + (b1 == 0 ? q + r : b2 == 0 ? q : r));
-	}
+        float p = b1 == 1 ? x : b1 == 2 ? y : z;
+        float q = b1 == 1 ? y : b1 == 2 ? z : x;
+        float r = b1 == 1 ? z : b1 == 2 ? x : y;
 
-	int shuffle(int i, int j, int k)
-	{
-		return b(i, j, k, 0) + b(j, k, i, 1) + b(k, i, j, 2) + b(i, j, k, 3) + b(j, k, i, 4) + b(k, i, j, 5) + b(i, j, k, 6) + b(j, k, i, 7);
-	}
+        p = b5 == b3 ? -p : p;
+        q = b5 == b4 ? -q : q;
+        r = b5 != (b4 ^ b3) ? -r : r;
+        t *= t;
+        return 8 * t * t * (p + (b1 == 0 ? q + r : b2 == 0 ? q : r));
+    }
 
-	int b(int i, int j, int k, int B)
-	{
-		return T[b(i, B) << 2 | b(j, B) << 1 | b(k, B)];
-	}
+    int shuffle(int i, int j, int k) {
+        return b(i, j, k, 0) + b(j, k, i, 1) + b(k, i, j, 2) + b(i, j, k, 3) + b(j, k, i, 4) + b(k, i, j, 5) + b(i, j, k, 6) + b(j, k, i, 7);
+    }
 
-	int b(int N, int B)
-	{
-		return N >> B & 1;
-	}
+    int b(int i, int j, int k, int B) {
+        return T[b(i, B) << 2 | b(j, B) << 1 | b(k, B)];
+    }
 
-	int fastfloor(float n)
-	{
-		return n > 0 ? (int)n : (int)n - 1;
-	}
+    int b(int N, int B) {
+        return N >> B & 1;
+    }
+
+    int fastfloor(float n) {
+        return n > 0 ? (int)n : (int)n - 1;
+    }
 }

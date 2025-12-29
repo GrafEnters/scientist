@@ -1,3 +1,1 @@
-﻿public class Campfire : Building
-{
-}
+﻿public class Campfire : Building { }

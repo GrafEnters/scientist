@@ -1,4 +1,3 @@
-﻿public static class InputManager 
-{
-	public static bool CanPlayerMove;
+﻿public static class InputManager {
+    public static bool CanPlayerMove;
 }
